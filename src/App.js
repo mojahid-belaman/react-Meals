@@ -1,7 +1,12 @@
 import "./index.css";
+import Header from "./components/Layout/Header";
 
 function App() {
-  return <h1>Hello World!</h1>;
+  return (
+    <div className="h-screen bg-secondary">
+      <Header />
+    </div>
+  )
 }
 
 export default App;
