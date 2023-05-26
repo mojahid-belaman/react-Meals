@@ -1,0 +1,16 @@
+import React from "react";
+import CartIcon from "../Cart/CartIcon";
+
+const HeaderCartButton = () => {
+  return (
+    <button className="flex items-center space-x-4 bg-thirdly hover:bg-fourthly active:bg-fourthly text-white rounded-full px-10 py-3">
+      <span>
+        <CartIcon />
+      </span>
+      <span>Your Cart</span>
+      <span className="px-3 py-1 rounded-full bg-red-600 flex justify-center items-center">3</span>
+    </button>
+  );
+};
+
+export default HeaderCartButton;
