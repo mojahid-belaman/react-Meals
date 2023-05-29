@@ -2,11 +2,11 @@ import React from "react";
 import Button from "../../UI/Button";
 import Input from "../../UI/Input";
 
-const MealsItemForm = () => {
+const MealsItemForm = (props) => {
   return (
     <form>
       <Input
-        label="amount"
+        label={`amount_${props.id}`}
         input={{
           id: "amount",
           type: "number",
