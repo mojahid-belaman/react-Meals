@@ -32,7 +32,7 @@ const DUMMY_MEALS = [
 const MealsAvailable = () => {
   const listMeals = DUMMY_MEALS.map((meal) => <MealsItem key={meal.id} meal={meal} />);
   return (
-    <section className="max-w-4xl w-[90%] mx-auto">
+    <section className="max-w-4xl w-[90%] mx-auto animate-meal">
       <Card>
         <ul>{listMeals}</ul>
       </Card>
