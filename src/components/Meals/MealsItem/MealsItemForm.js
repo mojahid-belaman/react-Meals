@@ -16,7 +16,7 @@ const MealsItemForm = (props) => {
           defaultValue: "1",
         }}
       />
-      <Button className={"px-8 font-bold rounded-full"}>+ Add</Button>
+      <Button className={"px-8 text-white font-bold rounded-full"}>+ Add</Button>
     </form>
   );
 };

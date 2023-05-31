@@ -1,8 +1,8 @@
 import { Fragment } from "react";
 import ReactDOM from "react-dom";
 
-const BackDrop = () => {
-  return <div className="fixed left-0 top-0 z-40 w-full h-full bg-black/80" />;
+const BackDrop = (props) => {
+  return <div className="fixed left-0 top-0 z-40 w-full h-full bg-black/80" onClick={props.onClick}/>;
 };
 
 const ModalOverlay = (props) => {
@@ -18,7 +18,7 @@ const portalElement = document.getElementById("overlay");
 const Modal = (props) => {
   return (
     <Fragment>
-      {ReactDOM.createPortal(<BackDrop />, portalElement)}
+      {ReactDOM.createPortal(<BackDrop onClick={props.onClose} />, portalElement)}
       {ReactDOM.createPortal(
         <ModalOverlay>{props.children}</ModalOverlay>,
         portalElement
