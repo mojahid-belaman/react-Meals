@@ -6,7 +6,6 @@ import Cart from "./components/Cart/Cart";
 function App() {
   return (
     <div className="h-screen">
-      <Cart />
       <Header />
       <main>
         <Meals />
