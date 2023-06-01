@@ -1,11 +1,22 @@
-import React from "react";
+import React, { useRef } from "react";
 import Button from "../../UI/Button";
 import Input from "../../UI/Input";
 
 const MealsItemForm = (props) => {
+  const inputRef = useRef();
+
+  const submitHandler = (event) => {
+    event.preventDefault();
+    const enteredAmount = inputRef.current.value;
+    const amountNumber = +enteredAmount;
+    if (enteredAmount.trim().length === 0 || amountNumber < 1 || amountNumber > 5) 
+      return ;
+    props.onAddMeal(amountNumber);
+  }
   return (
-    <form>
+    <form onSubmit={submitHandler}>
       <Input
+        ref={inputRef}
         label="Amount"
         input={{
           id: `amount_${props.id}`,
@@ -16,7 +27,7 @@ const MealsItemForm = (props) => {
           defaultValue: "1",
         }}
       />
-      <Button className={"px-8 text-white font-bold rounded-full"}>+ Add</Button>
+      <Button className={"px-8 w-full text-white font-bold rounded-full"} type="submit">+ Add</Button>
     </form>
   );
 };
