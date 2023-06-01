@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import meals from "../asset/meals.jpg";
+import meals from "../../assets/meals.jpg";
 import HeaderCartButton from "./HeaderCartButton";
 
 const Header = (props) => {
