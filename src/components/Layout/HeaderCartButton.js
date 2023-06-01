@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import CartIcon from "../Cart/CartIcon";
+import CartContext from "../../store/cart-context";
 
 const HeaderCartButton = (props) => {
+  const cartCtx = useContext(CartContext);
+  const totalAmount = cartCtx.items.reduce((accum, curr) => {
+    return accum + curr.amount;
+  }, 0);
   return (
     <button
       className="flex items-center space-x-2 md:space-x-4 bg-thirdly hover:bg-fourthly active:bg-fourthly text-white rounded-full px-5 md:px-10 py-3"
@@ -12,7 +17,7 @@ const HeaderCartButton = (props) => {
       </span>
       <span className="hidden md:block">Your Cart</span>
       <span className="px-3 py-1 rounded-full bg-red-600 flex justify-center items-center">
-        3
+        {totalAmount}
       </span>
     </button>
   );
