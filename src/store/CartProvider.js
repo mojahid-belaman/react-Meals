@@ -21,7 +21,6 @@ const cartReducer = (state, action) => {
 
 function CartProvider(props) {
   const [cartState, dispatchFn] = useReducer(cartReducer, defaultCartState);
-  console.log(cartState.items);
   const addItemHandler = (item) => {
     dispatchFn({ type: "ADD", item: item });
   };
