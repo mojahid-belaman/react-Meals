@@ -8,11 +8,18 @@ const Cart = (props) => {
   const cartCtx = useContext(CartContext);
   const totalAmount = `$${cartCtx.totalAmount.toFixed(2)}`;
   const hasItems = cartCtx.items.length > 0;
-  const cartItemAddHandler = (item) => {};
-  const cartItemRemoveHandler = (id) => {};
+  const cartItemAddHandler = (item) => {
+    cartCtx.addItem({
+      ...item,
+      amount: 1
+    })
+  };
+  const cartItemRemoveHandler = (id) => {
+    cartCtx.removeItem(id);
+  };
   const cartItems = (
     <ul className="mb-10 max-h-96 overflow-y-scroll scrollbar-thin scrollbar-thumb-primary">
-      {cartCtx.items.map((item) => (
+      {cartCtx.items?.map((item) => (
         <CartItem
           key={item.id}
           item={item}
@@ -24,7 +31,7 @@ const Cart = (props) => {
   );
   return (
     <Modal onClose={props.onClose}>
-      {cartItems}
+      {cartCtx.items.length > 0 && cartItems}
       <div className="flex justify-between text-2xl font-bold mb-5">
         <span>Total Amount</span>
         <span>{totalAmount}</span>
