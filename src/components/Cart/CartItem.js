@@ -2,7 +2,7 @@ import React from "react";
 import Button from "../UI/Button";
 
 const CartItem = (props) => {
-  const { name, price, amount, onAdd, onRemove } = props.item;
+  const { name, price, amount } = props.item;
   const newPrice = `$${price.toFixed(2)}`;
   return (
     <li className="py-5 first:pt-0 border-b-4 border-b-primary flex justify-between items-center">
@@ -20,7 +20,7 @@ const CartItem = (props) => {
           className={
             "font-bold bg-transparent text-primary hover:text-white border border-primary py-0 px-5 mr-3 rounded-lg"
           }
-          onClick={onRemove}
+          onClick={props.onRemove}
         >
           -
         </Button>
@@ -28,7 +28,7 @@ const CartItem = (props) => {
           className={
             "font-bold bg-transparent text-primary hover:text-white border border-primary py-0 px-4 rounded-lg"
           }
-          onClick={onAdd}
+          onClick={props.onAdd}
         >
           +
         </Button>
