@@ -9,10 +9,14 @@ const MealsItemForm = (props) => {
     event.preventDefault();
     const enteredAmount = inputRef.current.value;
     const amountNumber = +enteredAmount;
-    if (enteredAmount.trim().length === 0 || amountNumber < 1 || amountNumber > 5) 
-      return ;
+    if (
+      enteredAmount.trim().length === 0 ||
+      amountNumber < 1 ||
+      amountNumber > 5
+    )
+      return;
     props.onAddMeal(amountNumber);
-  }
+  };
   return (
     <form onSubmit={submitHandler}>
       <Input
@@ -27,7 +31,12 @@ const MealsItemForm = (props) => {
           defaultValue: "1",
         }}
       />
-      <Button className={"px-8 w-full text-white font-bold rounded-full"} type="submit">+ Add</Button>
+      <Button
+        className={"px-8 py-2 w-full text-white font-bold rounded-full"}
+        type="submit"
+      >
+        + Add
+      </Button>
     </form>
   );
 };
