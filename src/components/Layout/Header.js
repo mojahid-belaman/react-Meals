@@ -5,7 +5,7 @@ import HeaderCartButton from "./HeaderCartButton";
 const Header = (props) => {
   return (
     <Fragment>
-      <header className="w-full h-16 px-2 py-10 md:px-10 bg-primary text-white flex justify-between items-center">
+      <header className="w-full h-16 px-2 py-10 md:px-10 bg-primary text-white fixed z-50 flex justify-between items-center">
         <h1 className="text-2xl font-bold">ReactMeals</h1>
         <HeaderCartButton onClick={props.onShow} />
       </header>
