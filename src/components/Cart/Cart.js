@@ -1,18 +1,20 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import Button from "../UI/Button";
 import Modal from "../UI/Modal";
 import CartContext from "../../store/cart-context";
 import CartItem from "./CartItem";
+import Checkout from "./Checkout";
 
 const Cart = (props) => {
+  const [isCheckout, setIsCheckout] = useState(false);
   const cartCtx = useContext(CartContext);
   const totalAmount = `$${cartCtx.totalAmount.toFixed(2)}`;
   const hasItems = cartCtx.items.length > 0;
   const cartItemAddHandler = (item) => {
     cartCtx.addItem({
       ...item,
-      amount: 1
-    })
+      amount: 1,
+    });
   };
   const cartItemRemoveHandler = (id) => {
     cartCtx.removeItem(id);
@@ -29,6 +31,28 @@ const Cart = (props) => {
       ))}
     </ul>
   );
+
+  const checkoutHandler = () => {
+    setIsCheckout(true);
+  };
+
+  const styleBtnCancel =
+    "px-8 py-1 bg-white text-primary hover:bg-primary hover:text-white border border-primary rounded-full";
+  const styleBtnOrder =
+    "px-8 py-1 text-white border border-primary rounded-full";
+
+  const contentButton = (
+    <div className="space-x-4 text-right">
+      <Button className={styleBtnCancel} onClick={props.onClose}>
+        Close
+      </Button>
+      {hasItems && (
+        <Button className={styleBtnOrder} onClick={checkoutHandler}>
+          Order
+        </Button>
+      )}
+    </div>
+  );
   return (
     <Modal onClose={props.onClose}>
       {cartCtx.items.length > 0 && cartItems}
@@ -36,25 +60,8 @@ const Cart = (props) => {
         <span>Total Amount</span>
         <span>{totalAmount}</span>
       </div>
-      <div className="space-x-4 text-right">
-        <Button
-          className={
-            "px-8 py-1 bg-white text-primary hover:bg-primary hover:text-white border border-primary rounded-full"
-          }
-          onClick={props.onClose}
-        >
-          Close
-        </Button>
-        {hasItems && (
-          <Button
-            className={
-              "px-8 py-1 text-white border border-primary rounded-full"
-            }
-          >
-            Order
-          </Button>
-        )}
-      </div>
+      {isCheckout && <Checkout onClose={props.onClose} />}
+      {!isCheckout && contentButton}
     </Modal>
   );
 };
