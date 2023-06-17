@@ -1,40 +1,32 @@
+import { useState, useEffect } from "react";
 import Card from "../UI/Card";
 import MealsItem from "./MealsItem/MealsItem";
-import { useEffect, useState } from "react";
+import useRequest from "../../hooks/use-Request";
 
 const MealsAvailable = () => {
   const [meals, setMeals] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const { loading, error, fetchData } = useRequest();
+  
+  const manipulateDAta = (data) => {
+    const arrData = [];
+    for (const key in data) {
+      arrData.push({
+        id: key,
+        name: data[key].name,
+        description: data[key].description,
+        price: data[key].price,
+      });
+    }
+    setMeals(arrData);
+  };
+
 
   useEffect(() => {
-    const fetchData = async () => {
-      setIsLoading(true);
-      setError(null);
-      const res = await fetch(
-        "https://meal-http-fdda1-default-rtdb.firebaseio.com/meals.json"
-      );
-      if (!res.ok) {
-        throw new Error("Somthing Went Wrong!");
-      }
-      const data = await res.json();
-      const arrData = [];
-      for (const key in data) {
-        arrData.push({
-          id: key,
-          name: data[key].name,
-          description: data[key].description,
-          price: data[key].price,
-        });
-      }
-      setMeals(arrData);
-      setIsLoading(false);
-    };
-    fetchData().catch((error) => {
-      setError(error.message);
-      setIsLoading(false);
-    });
-  }, []);
+    fetchData(
+      {url: "https://meal-http-fdda1-default-rtdb.firebaseio.com/meals.json"},
+      manipulateDAta
+    );
+  }, [fetchData]);
 
   let content = <p>No Found Meals!</p>;
   if (meals.length > 0) {
@@ -46,7 +38,7 @@ const MealsAvailable = () => {
       </ul>
     );
   }
-  if (isLoading) {
+  if (loading) {
     content = <p>LOADING...</p>;
   }
   if (error) {
