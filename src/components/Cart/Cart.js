@@ -56,8 +56,8 @@ const Cart = (props) => {
       },
       funcManupData
     );
-    cartCtx.clearItem();
     setIsSubmit(true);
+    cartCtx.clearItem();
   };
 
   const styleBtnCancel =
@@ -95,7 +95,10 @@ const Cart = (props) => {
     content = (
       <>
         <h1 className="text-primary mb-5">Data Save Successfully.</h1>
-        <Button className={styleBtnOrder + ` flex ml-auto`} onClick={props.onClose}>
+        <Button
+          className={styleBtnOrder + ` flex ml-auto`}
+          onClick={props.onClose}
+        >
           Cancel
         </Button>
       </>
@@ -105,7 +108,17 @@ const Cart = (props) => {
     content = <h1>Loading...</h1>;
   }
   if (error) {
-    content = <h1 className="text-red-600">{error}</h1>;
+    content = (
+      <>
+        <h1 className="text-red-600">{error}</h1>
+        <Button
+          className={styleBtnOrder + ` flex ml-auto`}
+          onClick={props.onClose}
+        >
+          Cancel
+        </Button>
+      </>
+    );
   }
   return <Modal onClose={props.onClose}>{content}</Modal>;
 };
