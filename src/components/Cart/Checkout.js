@@ -109,6 +109,9 @@ const Checkout = (props) => {
             onChange={streetChangeHandler}
             onBlur={streetBlurHandler}
           />
+          {streetHasError && (
+            <p className="text-red-600">Please Enter Valid Street.</p>
+          )}
         </div>
       </div>
       <div className="flex space-x-5">
@@ -129,6 +132,9 @@ const Checkout = (props) => {
             onChange={postalCodeChangeHandler}
             onBlur={postalCodeBlurHandler}
           />
+          {postalCodeHasError && (
+            <p className="text-red-600">Please Enter Valid Postal Code.</p>
+          )}
         </div>
         <div className="mb-3 flex-1">
           <label htmlFor="city" className={styleLabel}>
@@ -147,6 +153,9 @@ const Checkout = (props) => {
             onChange={cityChangeHandler}
             onBlur={cityBlurHandler}
           />
+          {cityHasError && (
+            <p className="text-red-600">Please Enter Valid City.</p>
+          )}
         </div>
       </div>
       <div className="flex space-x-5 justify-end mt-5">
